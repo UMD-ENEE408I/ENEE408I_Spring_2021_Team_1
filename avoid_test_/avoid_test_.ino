@@ -12,13 +12,13 @@ VNH3SP30 Motor2;    // define control object for 1 motor
 #define M2_PWM 11   // pwm pin motor (digital output)
 #define M2_INB 12   // control pin INB (digital output)
 
-int trig_L = 5;    // TRIG pin
-int trig_M = 6;
-int trig_R = 7;
+int echo_L = 5;    // ECHO pin
+int echo_M = 6; 
+int echo_R = 7;
 
-int echo_L = 8;    // ECHO pin
-int echo_M = 9; 
-int echo_R = 13;
+int trig_L = 8;    // TRIG pin
+int trig_M = 9;
+int trig_R = 13;
 
 int wall = 50; // distance threshold
 
@@ -85,7 +85,7 @@ void left(){
 
 
 bool checkWall(){
-  if(dist_L<wall || dist_M<wall || dist_R<wall){
+  if(dist_L < wall || dist_M < wall || dist_R < wall){
     return true;
   }
   return false;
