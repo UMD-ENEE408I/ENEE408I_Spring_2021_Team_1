@@ -4,9 +4,9 @@ VNH3SP30 Motor1;    // define control object for 1 motor
 VNH3SP30 Motor2;    // define control object for 1 motor
 
 // motor pins
-#define M1_INA 2    // control pin INA (digital output)
+#define M1_INA 4    // control pin INA (digital output)
 #define M1_PWM 3    // pwm pin motor (digital output)
-#define M1_INB 4    // control pin INB (digital output)
+#define M1_INB 2    // control pin INB (digital output)
 
 #define M2_INA 10   // control pin INA (digital output)
 #define M2_PWM 11   // pwm pin motor (digital output)
@@ -24,34 +24,19 @@ int wall = 50; // distance threshold
 
 float dist_L, dist_M, dist_R;
 
-// implemented from https://github.com/UMD-ENEE408I/ENEE408I_Fall_2020/blob/team1/arduino/arduino.ino //
-// may need to tune this to work with our stuff //
-
-void getSensorL(){
-  digitalWrite(trig_L, HIGH);
+int getSensor(int echo, int trig){
+  int dist;
+  digitalWrite(trig, HIGH);
   delayMicroseconds(60);
-  digitalWrite(trig_L, LOW);
-  dist_L = pulseIn(echo_L, HIGH) * 0.017;
+  digitalWrite(trig, LOW);
+  return dist = pulseIn(echo, HIGH) * 0.017;
 }
 
-void getSensorM(){
-  digitalWrite(trig_M, HIGH);
-  delayMicroseconds(60);
-  digitalWrite(trig_M, LOW);
-  dist_M = pulseIn(echo_M, HIGH) * 0.017;
-}
-
-void getSensorR(){
-  digitalWrite(trig_R, HIGH);
-  delayMicroseconds(60);
-  digitalWrite(trig_R, LOW);
-  dist_R = pulseIn(echo_R, HIGH) * 0.017;
-}
 
 void getAllSensors(){
-  getSensorL();
-  getSensorM();
-  getSensorR();
+  dist_L = getSensor(echo_L, trig_L);
+  dist_M = getSensor(echo_M, trig_M);
+  dist_R = getSensor(echo_R, trig_R);
 }
 
 void forward(){
@@ -72,14 +57,14 @@ void stopAll(){
 void right(){
   Motor1.setSpeed(-100); // motor 1/4-speed "forward"
   Motor2.setSpeed(100); // motor 1/4-speed "forward"
-  delay(500);
+  delay(700);
   stopAll();
 }
 
 void left(){
   Motor1.setSpeed(100); // motor 1/4-speed "forward"
   Motor2.setSpeed(-100); // motor 1/4-speed "forward"
-  delay(500);
+  delay(700);
   stopAll();
 }
 
@@ -118,15 +103,14 @@ void setup() {
 }
 
 void loop() {
-  while(!Serial.available()){
     getAllSensors();
-    forward();
     if(checkWall()){
       stopAll();
       delay(100);
       backward();
       delay(100);
       chooseDir();
-    }
-  }
+    } else { 
+    forward();
+    } 
 }
