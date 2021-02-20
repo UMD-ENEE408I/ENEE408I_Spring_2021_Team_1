@@ -122,6 +122,21 @@ void loop() {
   if (Serial.available()) {
     int incoming_serial = Serial.read();
     switch(incoming_serial){
+      case 'f':
+        forward();
+        break;
+      case 'b':
+        backward();
+        break;
+      case 'l':
+        left();
+        break;
+      case 'r':
+        right();
+        break;
+      case 's':
+        stopAll();
+        break;
       case 'w':
         wander();
         break;
