@@ -32,7 +32,7 @@ def go_forward():
 @ask.intent('Stop')
 def stop():
     ser.write(b's')
-    speech_text = 'Okay, I will Stop now!'
+    speech_text = 'Stopping!'
     return statement(speech_text).simple_card('My Robot', speech_text)
 
 if __name__ == '__main__':

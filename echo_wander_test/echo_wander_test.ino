@@ -118,7 +118,7 @@ void wander(){
 }
 
 void loop() {
-  getSensors();
+  getAllSensors();
   if (Serial.available()) {
     int incoming_serial = Serial.read();
     switch(incoming_serial){
