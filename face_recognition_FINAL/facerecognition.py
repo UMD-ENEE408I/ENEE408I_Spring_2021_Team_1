@@ -10,7 +10,8 @@ font = cv2.FONT_HERSHEY_PLAIN
 # starting id
 id = 0
 # id names
-names = ['None', 'Chris', 'Jake'] 
+# 0-None 1-Suyaib 2-Chris 3-Mignote
+names = ['None', 'Suyaib', 'Chris', 'Mignote'] 
 
 cam = cv2.VideoCapture(0)
 cam.set(3,640)
@@ -39,24 +40,8 @@ while True:
         else:
             id = "unknown"
             confidence = "{0}%".format(round(100 - confidence))
-        cv2.putText(
-                    img, 
-                    str(id), 
-                    (x+5,y-5), 
-                    font, 
-                    2, 
-                    (255,255,255), 
-                    2
-                   )
-        cv2.putText(
-                    img, 
-                    str(confidence), 
-                    (x+5,y+h-5), 
-                    font, 
-                    2, 
-                    (0,255,0), 
-                    2
-                   )  
+        cv2.putText(img, str(id), (x+5,y-5), font, 2, (255,255,255), 2)
+        cv2.putText(img, str(confidence), (x+5,y+h-5), font, 2, (0,255,0), 2)  
 
     # Display the output
     cv2.imshow('camera',img) 
