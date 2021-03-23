@@ -140,18 +140,22 @@ void loop() {
     switch (incoming_serial) {
       case 'f':
         forward();
+        stopAll();
         break;
 
       case 'b':
         backward();
+        stopAll();
         break;
 
       case 'l':
         left();
+        stopAll();
         break;
 
       case 'r':
         right();
+        stopAll();
         break;
 
       case 's':
