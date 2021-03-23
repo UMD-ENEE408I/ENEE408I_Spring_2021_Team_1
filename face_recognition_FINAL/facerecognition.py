@@ -39,8 +39,6 @@ while True:
         else:
             id = "unknown"
             confidence = "{0}%".format(round(100 - confidence))
-        print(str(id))
-        print(str(confidence))
         cv2.putText(
                     img, 
                     str(id), 
