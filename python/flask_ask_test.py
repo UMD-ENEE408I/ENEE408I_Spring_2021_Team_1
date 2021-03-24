@@ -46,13 +46,13 @@ def face():
     global user_name 
     user_name = fr.id
     if user_name == default_user:
-        speech_text = 'You are {}, welcome!'.format(user_name)
+        speech_text = 'You are {}, Welcome!'.format(user_name)
     else:
-        speech_text = 'You are {}, emmmmmmm!'.format(user_name)
+        speech_text = 'You are {}, I do not know you!'.format(user_name)
     return statement(speech_text).simple_card('My Robot', speech_text)
 
 if __name__ == '__main__':
 
-    face = threading.Thread(target=fr.activate_cam)
+    face = threading.Thread(target=fr.act_cam)
     face.start()
     app.run()
