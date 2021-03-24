@@ -7,10 +7,10 @@ from flask_ask import Ask, statement
 import serial
 import threading
 import facerecognition as fr
+import time
 
 user_name = "Unknown"
 default_user = "Suyaib"
-check_status = None
 
 app = Flask(__name__)
 ask = Ask(app, '/')
@@ -52,7 +52,6 @@ def face():
     return statement(speech_text).simple_card('My Robot', speech_text)
 
 if __name__ == '__main__':
-
     face = threading.Thread(target=fr.act_cam)
     face.start()
     app.run()

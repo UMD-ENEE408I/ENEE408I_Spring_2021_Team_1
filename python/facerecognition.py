@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import os 
+import time
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer.yml')
 
@@ -14,6 +15,9 @@ id = 0
 names = ['None', 'Suyaib', 'Chris', 'Mignote'] 
 
 cam = cv2.VideoCapture(0)
+
+time.sleep(5.0)
+
 cam.set(3,640)
 cam.set(4,480)
 
