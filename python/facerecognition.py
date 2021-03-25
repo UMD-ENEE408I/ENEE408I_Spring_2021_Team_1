@@ -12,7 +12,7 @@ font = cv2.FONT_HERSHEY_PLAIN
 id = 0
 # id names
 # 0-None 1-Suyaib 2-Chris 3-Mignote
-names = ['None', 'Suyaib', 'Chris', 'Mignote'] 
+names = ['None', 'Shueyeeb', 'Chris', 'Mignote'] 
 
 cam = cv2.VideoCapture(0)
 

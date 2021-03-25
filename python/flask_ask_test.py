@@ -10,7 +10,7 @@ import facerecognition as fr
 import time
 
 user_name = "Unknown"
-default_user = "Suyaib"
+default_user = "Shueyeeb"
 
 app = Flask(__name__)
 ask = Ask(app, '/')
@@ -46,7 +46,7 @@ def face():
     global user_name 
     user_name = fr.id
     if user_name == default_user:
-        speech_text = 'You are {}, Welcome!'.format(user_name)
+        speech_text = 'Welcome {}!'.format(user_name)
     else:
         speech_text = 'You are {}, I do not know you!'.format(user_name)
     return statement(speech_text).simple_card('My Robot', speech_text)
