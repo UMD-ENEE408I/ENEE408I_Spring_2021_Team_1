@@ -8,6 +8,7 @@ import serial
 import threading
 import facerecognition as fr
 import time
+from chat_client import RobotChatClient
 
 user_name = "Unknown"
 default_user = "Shueyeeb"
@@ -49,6 +50,20 @@ def face():
         speech_text = 'Welcome {}!'.format(user_name)
     else:
         speech_text = 'You are {}, I do not know you!'.format(user_name)
+    return statement(speech_text).simple_card('My Robot', speech_text)
+
+@ask.intent('AllWander')
+def allWander():
+    command = "w"
+    speech_text = 'I asked all robots to wander'
+
+    ser.write(command.encode('utf-8'))
+
+    if command != "":
+        client.send({'type': 'command',
+                     'user': 'all',
+                     'command': command})
+
     return statement(speech_text).simple_card('My Robot', speech_text)
 
 if __name__ == '__main__':
