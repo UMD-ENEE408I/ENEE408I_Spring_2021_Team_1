@@ -34,6 +34,8 @@ else:
 # allow the camera or video file to warm up
 time.sleep(2.0)
 
+cur_radius = 0
+
 # keep looping
 while True:
 	# grab the current frame
@@ -84,6 +86,24 @@ while True:
 			cv2.circle(frame, (int(x), int(y)), int(radius),
 				(0, 255, 255), 2)
 			cv2.circle(frame, center, 5, (0, 0, 255), -1)
+			
+	if x > 400:
+		print("r")
+	elif x < 200:
+		print("l")
+	else:
+		print("m")
+
+	if cur_radius < radius:
+		print("f")
+	elif cur_radius > radius:
+		print("b")
+	else:
+		print("s")
+
+	cur_radius = radius
+
+	print(cur_radius)
 
 	# update the points queue
 	pts.appendleft(center)
@@ -98,7 +118,7 @@ while True:
 		# otherwise, compute the thickness of the line and
 		# draw the connecting lines
 		thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
-		cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
+		cv2.line(frame, pts[i - 1], pts[i], (255, 0, 0), thickness)
 
 	# show the frame to our screen
 	cv2.imshow("Frame", frame)
