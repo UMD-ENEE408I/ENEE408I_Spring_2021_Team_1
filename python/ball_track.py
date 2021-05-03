@@ -97,7 +97,8 @@ while True:
 		print("l")
 		ser.write(b'l')
 	else:
-		print("m")
+		print("s")
+		ser.write(b's')
 
 	if cur_radius < radius:
 		print("f")
