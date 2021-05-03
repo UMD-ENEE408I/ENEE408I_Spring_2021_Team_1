@@ -140,21 +140,25 @@ void loop() {
     switch (incoming_serial) {
       case 'f':
         forward();
+        delay(400);
         stopAll();
         break;
 
       case 'b':
         backward();
+        delay(400);
         stopAll();
         break;
 
       case 'l':
         left();
+        delay(400);
         stopAll();
         break;
 
       case 'r':
         right();
+        delay(400);
         stopAll();
         break;
 
