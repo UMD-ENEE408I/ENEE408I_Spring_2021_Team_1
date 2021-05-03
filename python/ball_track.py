@@ -6,6 +6,9 @@ import argparse
 import cv2
 import imutils
 import time
+import serial
+
+ser = serial.Serial('/dev/ttyUSB0')
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -89,17 +92,22 @@ while True:
 			
 	if x > 400:
 		print("r")
+		ser.write(b'r')
 	elif x < 200:
 		print("l")
+		ser.write(b'l')
 	else:
 		print("m")
 
 	if cur_radius < radius:
 		print("f")
+		ser.write(b'f')
 	elif cur_radius > radius:
 		print("b")
+		ser.write(b'b')
 	else:
 		print("s")
+		ser.write(b's')
 
 	cur_radius = radius
 
