@@ -38,15 +38,8 @@ def test_callback(message_dict):
     elif message_dict['type'] == 'users':
         print('Number of users: {}'.format(message_dict['count']))
 
-def Connected_Chat():
-    global client
-    client = RobotChatClient(ngrok_link, callback=test_callback)
-    time.sleep(1)
-    print('Suyaib has connected')
-    client.send({'type': 'message', 'user': username,
-                'message': 'Suyaib has connected' })
-
-
+client = RobotChatClient(ngrok_link, callback=test_callback)
+ 
 @ask.intent('Wander')
 def wander():
     ser.write(b'w')
