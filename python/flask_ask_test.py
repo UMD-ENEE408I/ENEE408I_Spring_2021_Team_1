@@ -17,8 +17,26 @@ app = Flask(__name__)
 ask = Ask(app, '/')
 
 username = 'suyaib'
+ngrok_link = 'ws://something.ngrok.io'
 
 ser = serial.Serial('/dev/ttyUSB0')
+
+def test_callback(message_dict):
+    
+    if message_dict['type'] == 'message':
+        print('{0} : {1}'.format(message_dict['user'],message_dict['message']))
+
+    elif message_dict['type'] == 'command':
+        print('Global Target: {0} Command: {1}'.format(
+              message_dict['user'],
+              message_dict['command']))
+
+        if message_dict['user'] == 'all' or message_dict['user'] == username:
+            print(message_dict['command'])
+            ser.write(message_dict['command'].encode('utf-8'))
+            
+    elif message_dict['type'] == 'users':
+        print('Number of users: {}'.format(message_dict['count']))
 
 def Connected_Chat():
     global client
