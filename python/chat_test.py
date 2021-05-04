@@ -1,7 +1,7 @@
 from chat_client import RobotChatClient
 import time
 
-usrname = 'Suyaib'
+username = 'Suyaib'
 
 def test_callback(message_dict):
     
@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     string = input()
     while(string != 'quit'):
-        client.send({'type': 'message', 'user': usrname, 'message': string})
+        client.send({'type': 'message', 'user': username, 'message': string})
         string = input()
 
     client.send({'type': 'message',

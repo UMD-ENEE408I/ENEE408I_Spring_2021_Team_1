@@ -16,7 +16,18 @@ default_user = "Shueyeeb"
 app = Flask(__name__)
 ask = Ask(app, '/')
 
+username = 'suyaib'
+
 ser = serial.Serial('/dev/ttyUSB0')
+
+def Connected_Chat():
+    global client
+    client = RobotChatClient(ngrok_link, callback=test_callback)
+    time.sleep(1)
+    print('Suyaib has connected')
+    client.send({'type': 'message', 'user': username,
+                'message': 'Suyaib has connected' })
+
 
 @ask.intent('Wander')
 def wander():
