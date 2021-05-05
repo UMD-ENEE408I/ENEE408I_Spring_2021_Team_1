@@ -100,6 +100,21 @@ def allWander():
 
     return statement(speech_text).simple_card('My Robot', speech_text)
 
+@ask.intent('AllStop')
+def OthersStop():
+    command = "s"
+    speech_text = 'I asked all robots to stop'
+
+    ser.write(command.encode('utf-8'))
+
+    if command != "":
+        client.send({'type': 'command',
+                     'user': 'all',
+                     'command': command})
+
+    return statement(speech_text).simple_card('My Robot', speech_text)
+
+
 if __name__ == '__main__':
     face = threading.Thread(target=fr.act_cam)
     face.start()
